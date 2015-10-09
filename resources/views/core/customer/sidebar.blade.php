@@ -10,20 +10,27 @@
         <img src="{{ asset("/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
       </div>
       <div class="pull-left info">
-        <p>中村さとし</p>
+        <?php
+          //$user = Cardano\User::findOrFail(1);
+          $user = Auth::user();
+          $role = $user->agent_id?"ユーザー":"代理店";
+        ?>
+        <p>{{ $user->name }}</p>
         <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i> ユーザー</a>
+        <a href="#"><i class="fa fa-circle text-success"></i>
+          {{ $role }}
+        </a>
       </div>
     </div>
 
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">ユーザーTOP</li>
+      <li class="header">{{ $role }} TOP</li>
       <!-- Optionally, you can add icons to the links -->
       <li><a href="/customer/order"><span>ご注文</span></a></li>
       <li><a href="/customer/order-list"><span>ご注文一覧</span></a></li>
       <li><a href="/customer/transfer"><span>ご入金先</span></a></li>
-      
+
       <li class="header">各種入力・変更</li>
       <li><a href="/customer/profile"><span>基本情報</span></a></li>
       <li><a href="/customer/employment"><span>義務先</span></a></li>

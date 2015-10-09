@@ -39,12 +39,12 @@
     </head>
     <body>
         <div class="container">
-            <div class="content">              
+            <div class="content">
               <button type="button" class="btn btn-block btn-primary btn-lg" onclick="location.href='/login'">口座開設・ログインはこちら</button>
               <br><br>
-              現在のXNC価格
-              
-              52 JPY            
+              <h3>現在のXNC価格</h3>
+
+              <h2>52 JPY</h2>
             </div>
         </div>
     </body>
