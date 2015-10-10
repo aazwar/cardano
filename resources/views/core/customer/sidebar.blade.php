@@ -11,8 +11,6 @@
       </div>
       <div class="pull-left info">
         <?php
-          //$user = Cardano\User::findOrFail(1);
-          $user = Auth::user();
           $role = $user->agent_id?"ユーザー":"代理店";
         ?>
         <p>{{ $user->name }}</p>
@@ -27,6 +25,7 @@
     <ul class="sidebar-menu">
       <li class="header">{{ $role }} TOP</li>
       <!-- Optionally, you can add icons to the links -->
+      <li><a href="/customer/dashboard"><span>トップ</span></a></li>
       <li><a href="/customer/order"><span>ご注文</span></a></li>
       <li><a href="/customer/order-list"><span>ご注文一覧</span></a></li>
       <li><a href="/customer/transfer"><span>ご入金先</span></a></li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Cardano Bitcoin</title>
 
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("/admin-lte/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
@@ -44,7 +44,7 @@
               <br><br>
               <h3>現在のXNC価格</h3>
 
-              <h2>52 JPY</h2>
+              <h2>{{ $rate }} JPY</h2>
             </div>
         </div>
     </body>

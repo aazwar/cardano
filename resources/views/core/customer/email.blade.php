@@ -9,18 +9,21 @@
       <h3 class="box-title">入力変更</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="/customer/email">
+      {!! csrf_field() !!}
       <div class="box-body">
         <div class="form-group">
-          <label for="genzai-email" class="col-sm-4 control-label">現在のメールアドレス</label>
+          <label for="email" class="col-sm-4 control-label">現在のメールアドレス</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="genzai-email" placeholder="">
+            <input type="text" class="form-control" id="current-email" placeholder=""
+              value="{{ $user->email }}" readonly>
           </div>
         </div>
         <div class="form-group">
           <label for="kibou-email" class="col-sm-4 control-label">ご希望のメールアドレス</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="kibou-email" placeholder="">
+            <input type="text" class="form-control" name="email"
+              value="{{ old('email') }}">
           </div>
         </div>
       </div><!-- /.box-body -->
@@ -31,6 +34,8 @@
     </form>
   </div><!-- /.box -->
 
+  @include('errors.message')
+  @include('core.message')
 </div>
 
 @endsection

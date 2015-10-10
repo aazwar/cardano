@@ -34,6 +34,11 @@
         <form action="{{ asset("/register") }}" method="post">
            {!! csrf_field() !!}
           <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="＊お名前"
+              name="name" value="{{ old('name') }}">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
             <input type="email" class="form-control" placeholder="＊メールアドレス"
               name="email" value="{{ old('email') }}">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -41,6 +46,11 @@
           <div class="form-group has-feedback">
             <input type="password" class="form-control" placeholder="＊パスワード"
               name="password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="＊パスワード確認"
+              name="password_confirmation">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -63,6 +73,7 @@
             </div><!-- /.col -->
           </div>
         </form>
+        <a href="/">ホーム</a>
       </div><!-- /.login-box-body -->
       <br><br>
       @if (count($errors) > 0)

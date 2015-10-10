@@ -9,79 +9,94 @@
       <h3 class="box-title">入力変更</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="/customer/profile">
+      {!! csrf_field() !!}
       <div class="box-body">
         <div class="form-group">
-          <label for="namae" class="col-sm-4 control-label">お名前<font color="red">＊</font></label>
+          <label for="name" class="col-sm-4 control-label">お名前<font color="red">＊</font></label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="namae" placeholder="お名前">
+            <input type="text" class="form-control" name="name" placeholder="お名前"
+              value="{{ old('name') ?: $user->name }}">
           </div>
         </div>
         <div class="form-group">
-          <label for="namae-kana" class="col-sm-4 control-label">お名前（カナ）<font color="red">＊</font></label>
+          <label for="name_kana" class="col-sm-4 control-label">お名前（カナ）<font color="red">＊</font></label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="namae-kana" placeholder="お名前（カナ）">
+            <input type="text" class="form-control" name="name_kana" placeholder="お名前（カナ）"
+              value="{{ old('name_kana') ?: $user->name_kana }}">
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-4 control-label">性別<font color="red">＊</font></label>                 
+          <label class="col-sm-4 control-label">性別<font color="red">＊</font></label>
+          <?php $sex = old('sex') ?: $user->sex;?>
           <div class="col-sm-4">
-            <label><input type="radio" name="seibetsu" id="seibetsu" value="男性" checked> 男性</label>&nbsp;
-            <label><input type="radio" name="seibetsu" id="seibetsu" value="女性"> 女性</label>
+            <label><input type="radio" name="seibetsu" name="sex" value="男性"
+              <?php if($sex == "男性") print("checked") ?>> 男性</label>&nbsp;
+            <label><input type="radio" name="seibetsu" name="sex" value="女性"
+              <?php if($sex == "女性") print("checked") ?>> 女性</label>
           </div>
         </div>
         <div class="form-group">
-          <label for="denwa" class="col-sm-4 control-label">電話<font color="red">＊</font></label>
+          <label for="phone" class="col-sm-4 control-label">電話<font color="red">＊</font></label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="denwa" placeholder="05004042932">
+            <input type="text" class="form-control" name="phone"
+              value="{{ old('phone') ?: $user->phone }}">
           </div>
         </div>
         <div class="form-group">
-          <label for="keitai-denwa" class="col-sm-4 control-label">携帯電話</label>
+          <label for="mobile_phone" class="col-sm-4 control-label">携帯電話</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="keitai-denwa" placeholder="09004042932">
+            <input type="text" class="form-control" name="mobile_phone"
+            value="{{ old('mobile_phone') ?: $user->mobile_phone }}">
           </div>
         </div>
         <div class="form-group">
-          <label for="faks" class="col-sm-4 control-label">FAX</label>
+          <label for="fax" class="col-sm-4 control-label">FAX</label>
           <div class="col-sm-4">
-            <input type="text" class="form-control" id="faks" placeholder="">
+            <input type="text" class="form-control" name="fax"
+            value="{{ old('fax') ?: $user->fax }}">
           </div>
         </div>
         <div class="form-group">
-          <label for="seinengappi" class="col-sm-4 control-label">生年月日<font color="red">＊</font></label>
+          <label for="birth_date" class="col-sm-4 control-label">生年月日<font color="red">＊</font></label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="seinengappi" placeholder="1989-02-02">
+            <input type="text" class="form-control" name="birth_date" placeholder="1989-02-02"
+              value="{{ old('birth_date') ?: $user->birth_date }}">
           </div>
         </div>
-                <div class="form-group">
-          <label for="yubinbango" class="col-sm-4 control-label">郵便番号<font color="red">＊</font></label>
+        <div class="form-group">
+          <label for="yuubinbango" class="col-sm-4 control-label">郵便番号<font color="red">＊</font></label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="yubinbango" placeholder="170-0003">
+            <input type="text" class="form-control" name="yuubinbango" placeholder="170-0003"
+              value="{{ old('yuubinbango') ?: $user->yuubinbango }}">
           </div>
         </div>
         <div class="form-group">
           <label for="todoufuken" class="col-sm-4 control-label">都道府県<font color="red">＊</font></label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="todoufuken" placeholder="東京都">
+            <input type="text" class="form-control" name="todoufuken" placeholder="東京都"
+              value="{{ old('todoufuken') ?: $user->todoufuken }}">
           </div>
         </div>
         <div class="form-group">
           <label for="shikuchouson" class="col-sm-4 control-label">市区町村<font color="red">＊</font></label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" id="shikuchouson" placeholder="新宿区">
+            <input type="text" class="form-control" name="shikuchouson" placeholder="新宿区"
+            value="{{ old('shikuchouson') ?: $user->shikuchouson }}">
           </div>
         </div>
         <div class="form-group">
           <label for="banchi" class="col-sm-4 control-label">番地<font color="red">＊</font></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="banchi" placeholder="西新宿１０−１８">
+            <input type="text" class="form-control" name="banchi" placeholder="西新宿１０−１８"
+              value="{{ old('banchi') ?: $user->banchi }}">
           </div>
         </div>
         <div class="form-group">
           <label for="tatemonona" class="col-sm-4 control-label">建物名<font color="red">＊</font></label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="tatemonona" placeholder="かわいそう　１０１">
+            <input type="text" class="form-control" name="tatemonona" placeholder="かわいそう　１０１"
+              value="{{ old('tatemonona') ?: $user->tatemonona }}">
           </div>
         </div>
       </div><!-- /.box-body -->
@@ -91,6 +106,8 @@
       </div><!-- /.box-footer -->
     </form>
   </div><!-- /.box -->
+  @include('errors.message')
+  @include('core.message')
 
 </div>
 

@@ -75,21 +75,11 @@
             </form>
 
             <a href="#">I forgot my password</a><br>
+            <a href="/register">Register</a><br>
           </div><!-- /.login-box-body -->
           <br><br>
 
-          @if (count($errors) > 0)
-          <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-            <ul class="list-unstyled">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-          </div>
-          @endif
-
+          @include('errors.message')
 
         </div><!-- /.login-box -->
     <!-- jQuery 2.1.4 -->
