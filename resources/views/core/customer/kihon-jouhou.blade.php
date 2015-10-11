@@ -61,7 +61,7 @@
           <label for="birth_date" class="col-sm-4 control-label">生年月日<font color="red">＊</font></label>
           <div class="col-sm-3">
             <input type="text" class="form-control" name="birth_date" placeholder="1989-02-02"
-              value="{{ old('birth_date') ?: $user->birth_date }}">
+              value="{{ old('birth_date') ?: $user->birth_date ?: '1991-01-01' }}">
           </div>
         </div>
         <div class="form-group">
@@ -108,6 +108,16 @@
   </div><!-- /.box -->
   @include('errors.message')
   @include('core.message')
+
+  <link href="{{ asset("/admin-lte/plugins/jQueryUI/jquery-ui.structure.min.css")}}" rel="stylesheet" type="text/css" />
+  <link href="{{ asset("/admin-lte/plugins/jQueryUI/jquery-ui.theme.min.css")}}" rel="stylesheet" type="text/css" />
+  <script src="{{ asset('/admin-lte/plugins/jQueryUI/jquery-ui.min.js') }}" charset="utf-8"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('#birth_date').datepicker({ dateFormat: 'yy-mm-dd' });
+  })
+  </script>
+
 
 </div>
 
