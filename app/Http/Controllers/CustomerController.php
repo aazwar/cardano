@@ -3,6 +3,8 @@
 namespace Cardano\Http\Controllers;
 
 Use Auth;
+Use Hash;
+Use Validator;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller {
@@ -138,16 +140,60 @@ class CustomerController extends Controller {
       'Email changed to: ' . $request->input('email'));
   }
 
+
+/**
+  Password change
+*/
   public function getPassword() {
     return view('core/customer/password', ['page_title' => 'パスワード変更']);
   }
 
+  public function postPassword(Request $request) {
+    Validator::extend('hash_check', function($attribute, $value, $parameters) {
+      return Hash::check($value, Auth::user()->getAuthPassword());
+    });
+
+    $this->validate($request, [
+      'current_password' => 'required|hash_check',
+      'new_password' =>'required|confirmed'
+    ], [
+      'hash_check' => '現在のパスワードは違う'
+    ]);
+
+    $user = Auth::user();
+    $user->password = Hash::make($request->input('current_password'));
+    $user->save();
+
+    return redirect()->action('CustomerController@getPassword')->with('message',
+      'パスワードが変更されました。');
+  }
+
+/**
+  Bank Account
+*/
   public function getTransfer() {
     return view('core/customer/nyuukin-saki', ['page_title' => '入金先']);
   }
 
+/**
+  Bitcoin Address
+*/
   public function getBitcoin() {
-    return view('core/customer/bitcoin', ['page_title' => 'Bitcoin アドレス']);
+    return view('core/customer/bitcoin',
+      ['page_title' => 'Bitcoin アドレス', 'user' => Auth::user()]);
+  }
+
+  public function postBitcoin(Request $request) {
+    $this->validate($request, [
+        'bitcoin_address' => 'required',
+    ]);
+    // TODO: bitcoin_address Validation
+
+    $input = $request->only(['bitcoin_address']);
+    $this->updateRecord($input);
+    return redirect()->action('CustomerController@getBitcoin')->with('message',
+      'Bitcoin アドレスが変更されました。');
+
   }
 }
 

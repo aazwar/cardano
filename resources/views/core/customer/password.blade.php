@@ -9,24 +9,25 @@
       <h3 class="box-title">入力変更</h3>
     </div><!-- /.box-header -->
     <!-- form start -->
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="post" action="/customer/password">
+      {!! csrf_field() !!}
       <div class="box-body">
         <div class="form-group">
-          <label for="genzai-pass" class="col-sm-4 control-label">現在のパスワード</label>
+          <label for="current_password" class="col-sm-4 control-label">現在のパスワード</label>
           <div class="col-sm-8">
-            <input type="password" class="form-control" id="genzai-pass" placeholder="">
+            <input type="password" class="form-control" name="current_password">
           </div>
         </div>
         <div class="form-group">
-          <label for="kibou-pass" class="col-sm-4 control-label">ご希望のパスワード</label>
+          <label for="new_password" class="col-sm-4 control-label">ご希望のパスワード</label>
           <div class="col-sm-8">
-            <input type="password" class="form-control" id="kibou-pass" placeholder="">
+            <input type="password" class="form-control" name="new_password">
           </div>
         </div>
         <div class="form-group">
-          <label for="kibou-pass-kakunin" class="col-sm-4 control-label">ご希望のパスワード確認</label>
+          <label for="new_password_confirmation" class="col-sm-4 control-label">ご希望のパスワード確認</label>
           <div class="col-sm-8">
-            <input type="password" class="form-control" id="kibou-pass-kakunin" placeholder="">
+            <input type="password" class="form-control" name="new_password_confirmation">
           </div>
         </div>
       </div><!-- /.box-body -->
@@ -36,6 +37,8 @@
       </div><!-- /.box-footer -->
     </form>
   </div><!-- /.box -->
+  @include('errors.message')
+  @include('core.message')
 
 </div>
 
