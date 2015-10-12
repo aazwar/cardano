@@ -11,11 +11,17 @@
       </div>
       <div class="pull-left info">
         <?php
-          $role = $user->agent_id?"ユーザー":"代理店";
+          if($user->agent_id) {
+            $role = "ユーザー";
+            $circle_color = 'text-success';
+          } else {
+            $role = "代理店";
+            $circle_color = 'text-info';
+          }
         ?>
         <p>{{ $user->name }}</p>
         <!-- Status -->
-        <a href="#"><i class="fa fa-circle text-success"></i>
+        <a href="#"><i class="fa fa-circle {{ $circle_color }}"></i>
           {{ $role }}
         </a>
       </div>

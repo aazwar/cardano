@@ -16,11 +16,15 @@ Route::get('/login', function() { return view('login'); });
 Route::get('/master/dashboard', function() { return view('core/master/top', ['page_title' => 'マスターTOP']); });*/
 
 Route::get('/', 'CoreController@root');
+
 Route::get('/login', 'Auth\AuthController@getLogin');
 Route::post('/login', 'Auth\AuthController@postLogin');
 Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
+
+Route::get('/dashboard', ['middleware' => 'auth', 'uses' => 'CoreController@getDashboard' ]);
 Route::controller('customer', 'CustomerController');
+Route::controller('master', 'MasterController');
 Route::controller('', 'CoreController');
 ?>

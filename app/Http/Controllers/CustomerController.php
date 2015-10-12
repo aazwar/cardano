@@ -145,7 +145,8 @@ class CustomerController extends Controller {
   Password change
 */
   public function getPassword() {
-    return view('core/customer/password', ['page_title' => 'パスワード変更']);
+    return view('core/customer/password',
+      ['page_title' => 'パスワード変更', 'user' => Auth::user() ]);
   }
 
   public function postPassword(Request $request) {

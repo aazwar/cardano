@@ -36,7 +36,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @include('header')
 
       <!-- Sidebar -->
-      @include('sidebar')
+      @if ($user->is_admin)
+      @include('core.master.sidebar')
+      @else
+      @include('core.customer.sidebar')
+      @endif
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper" style="min-height: 800px;">
@@ -54,7 +58,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section>
 
         <!-- Main content -->
-        <section class="content">          
+        <section class="content">
           <!-- Your Page Content Here -->
           @yield('content')
         </section><!-- /.content -->
@@ -74,8 +78,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{{ asset ("/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
 
-    <!-- Optionally, you can add Slimscroll and FastClick plugins. 
-          Both of these plugins are recommended to enhance the 
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+          Both of these plugins are recommended to enhance the
           user experience -->
   </body>
 </html>

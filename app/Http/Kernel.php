@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \Cardano\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Cardano\Http\Middleware\RedirectIfAuthenticated::class,
+        'role' => \Cardano\Http\Middleware\RoleMiddleware::class,
     ];
 }

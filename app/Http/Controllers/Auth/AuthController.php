@@ -24,7 +24,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $loginPath = '/login';
-    protected $redirectPath = '/customer/dashboard';
+    protected $redirectPath = '/dashboard';
     /**
      * Create a new authentication controller instance.
      *
@@ -45,7 +45,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:customers',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
